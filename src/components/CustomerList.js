@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import CustomerListItem from './CustomerListItem';
 
 const CustomerList = ({ customers, urlPath }) => {
@@ -7,9 +8,10 @@ const CustomerList = ({ customers, urlPath }) => {
     <div>
       <div className="customer-list">
         {
-          customers.map(
-            c => <CustomerListItem 
+          customers.map(c =>
+            <CustomerListItem
               key={c.dni}
+              dni={c.dni}
               name={c.name}
               editAction={'Editar'}
               delAction={'Eliminar'}
@@ -27,4 +29,4 @@ CustomerList.propTypes = {
   urlPath: PropTypes.string.isRequired,
 };
 
-export default CustomerList;
+export default withRouter(CustomerList);

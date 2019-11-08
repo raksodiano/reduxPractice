@@ -1,0 +1,36 @@
+{
+  "customers": [
+    {
+      "dni": "24237184",
+      "name": "Oskar E. Torres O.",
+      "age": 25
+    },
+    {
+      "dni": "24237185",
+      "name": "Juanito Manos largas",
+      "age": 29
+    },
+    {
+      "dni": "24237186",
+      "name": "Fulanito Notequien",
+      "age": 30
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
