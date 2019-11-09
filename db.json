@@ -1,16 +1,19 @@
 {
   "customers": [
     {
+      "id": "24237184",
       "dni": "24237184",
       "name": "Oskar E. Torres O.",
       "age": 25
     },
     {
+      "id": "24237185",
       "dni": "24237185",
-      "name": "Juanito Manos largas",
+      "name": "Juanito Manos Locas",
       "age": 29
     },
     {
+      "id": "24237186",
       "dni": "24237186",
       "name": "Fulanito Notequien",
       "age": 30

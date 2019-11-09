@@ -11,8 +11,6 @@ import { getCustomers } from './../selectors/customers';
 class CustomerContainer extends Component {
 
   componentDidMount() {
-    console.log("componentDidMount", this.props);
-    
     this.props.fetchCustomers();
   }
 
