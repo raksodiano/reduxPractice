@@ -27,7 +27,7 @@ class ContainerCustomer extends Component {
   }
 
   handleOnSubmitSuccess = () => {
-    this.props.history.goBack('/');
+    this.props.history.goBack();
   }
 
   renderBody = () => (

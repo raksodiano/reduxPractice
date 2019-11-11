@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Prompt } from 'react-router-dom';
 import { reduxForm, Field } from 'redux-form';
 // import { connect } from 'react-redux';
 import { setPropsAsInitial } from '../helpers/setPropsAsInitial';
@@ -34,11 +35,21 @@ const MyField = ({ input, meta, type, label, name }) => (
 );
 
 const toNumber = value => value && Number(value);
+const onlyGrow = (value, previousValue, values) =>
+  value && ((!previousValue) ? value : (((value > 17) && (value < 41)) ? value : previousValue));
 
-const CustomerEdit = ({ name, dni, age, handleSubmit, submitting, onBack }) => {
+const CustomerEdit = ({
+  name,
+  dni,
+  age,
+  handleSubmit,
+  submitting,
+  onBack,
+  pristine,
+  submitSucceeded
+}) => {
   return (
     <div>
-      <h2>Edicion del cliente</h2>
       <form onSubmit={handleSubmit}>
         <Field
           name="name"
@@ -59,11 +70,16 @@ const CustomerEdit = ({ name, dni, age, handleSubmit, submitting, onBack }) => {
           validate={isNumber}
           label="Edad"
           parse={toNumber}
+          normalize={onlyGrow}
         />
         <CustomerAction>
-          <button type="submit" disabled={submitting}>Aceptar</button>
-          <button onClick={onBack}>Cancelar</button>
+          <button type="submit" disabled={pristine || submitting}>Aceptar</button>
+          <button type="button" onClick={onBack}>Cancelar</button>
         </CustomerAction>
+        <Prompt
+          when={!pristine && !submitSucceeded}
+          message="Si lo haces, perderas datos"
+        />
       </form>
     </div>
   );
@@ -77,7 +93,7 @@ CustomerEdit.propTypes = {
 };
 
 const CustomerEditForm = reduxForm(
-  { 
+  {
     form: 'CustomerEdit',
     validate
   }
