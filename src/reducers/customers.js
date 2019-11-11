@@ -2,7 +2,8 @@ import { handleActions } from 'redux-actions';
 import {
   FETCH_CUSTOMERS,
   CREATE_CUSTOMER,
-  UPDATE_CUSTOMER
+  UPDATE_CUSTOMER,
+  DELETE_CUSTOMER
 } from './../constants';
 
 export const customers = handleActions({
@@ -30,5 +31,6 @@ export const customers = handleActions({
     );
 
     return newCustomers;
-  }
+  },
+  [DELETE_CUSTOMER]: (state, action) => state.filter(c => c.id !== action.payload)
 }, []);

@@ -1,46 +1,16 @@
 {
   "customers": [
     {
-      "id": "24237184",
-      "dni": "12093874",
-      "name": "nuevo cliente",
-      "age": 25
-    },
-    {
       "id": "24237185",
       "dni": "24237185",
       "name": "Juanito Manos Largas",
       "age": 31
     },
     {
-      "id": "24237186",
-      "dni": "24237186",
-      "name": "Fulanito Notequien",
-      "age": 30
-    },
-    {
       "name": "Oskar E. Torres O.",
       "dni": "24237184",
-      "age": 20,
-      "id": "1gjUpCn"
-    },
-    {
-      "name": "cliente 0",
-      "dni": "0147",
-      "age": 19,
-      "id": "bvz1KZz"
-    },
-    {
-      "name": "cliente 1",
-      "dni": "15985236",
-      "age": 18,
-      "id": "WMrxPX0"
-    },
-    {
-      "name": "cliente 3",
-      "dni": "15985266",
-      "age": 19,
-      "id": "aVy_neM"
+      "age": 25,
+      "id": "GjV8S8w"
     }
   ],
   "posts": [

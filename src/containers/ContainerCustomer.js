@@ -8,13 +8,14 @@ import CustomerEdit from './../components/CustomerEdit';
 import CustomerData from './../components/CustomerData';
 import { fetchCustomers } from './../actions/fetchCustomers';
 import { updateCustomer } from './../actions/updateCustomer';
+import { deleteCustomer } from './../actions/deleteCustomer';
 
 class ContainerCustomer extends Component {
 
   componentDidMount() {
     if (!this.props.customer) {
       this.props.fetchCustomers();
-    } 
+    }
   }
 
   handleSubmit = values => {
@@ -30,19 +31,38 @@ class ContainerCustomer extends Component {
     this.props.history.goBack();
   }
 
+  handleOnDelete = id => {
+    this.props.deleteCustomer(id).then(
+      v => this.props.history.goBack()
+    );
+  }
+
+  renderCustomerControl = (isEdit, isDelete) => {
+    const CustomerControl = isEdit ? CustomerEdit : CustomerData;
+    return <CustomerControl
+      {...this.props.customer}
+      onSubmit={this.handleSubmit}
+      onSubmitSuccess={this.handleOnSubmitSuccess}
+      onBack={this.handleOnBack}
+      isDeleteAllow={!!isDelete}
+      onDelete={this.handleOnDelete}
+    />
+  }
+
   renderBody = () => (
     <Route
       path="/customers/:dni/edit"
       children={
-        ({ match }) => {
-          const CustomerControl = match ? CustomerEdit : CustomerData;
-          return <CustomerControl 
-            {...this.props.customer} 
-            onSubmit={this.handleSubmit} 
-            onSubmitSuccess={this.handleOnSubmitSuccess} 
-            onBack={this.handleOnBack}
+        ({ match: isEdit }) => (
+          <Route
+            path="/customers/:dni/del"
+            children={
+              ({ match: isDelete }) => (
+                this.renderCustomerControl(isEdit, isDelete)
+              )
+            }
           />
-        }
+        )
       }
     />
   )
@@ -64,10 +84,17 @@ ContainerCustomer.propTypes = {
   customer: PropTypes.object,
   fetchCustomers: PropTypes.func.isRequired,
   updateCustomer: PropTypes.func.isRequired,
+  deleteCustomer: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, props) => ({
   customer: getCustomersByDni(state, props)
 });
 
-export default withRouter(connect(mapStateToProps, { fetchCustomers, updateCustomer })(ContainerCustomer));
+export default withRouter(connect(
+  mapStateToProps, 
+  { 
+    fetchCustomers, 
+    updateCustomer,
+    deleteCustomer
+  })(ContainerCustomer));
